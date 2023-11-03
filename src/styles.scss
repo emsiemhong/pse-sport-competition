@@ -1,1 +1,148 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use './styles/variables' as *;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$pse-primary-palette: (
+  50 : #e0ebf7,
+  100 : #b3ceeb,
+  200 : #80addd,
+  300 : #4d8ccf,
+  400 : #2674c5,
+  500 : #005bbb,
+  600 : #0053b5,
+  700 : #0049ac,
+  800 : #0040a4,
+  900 : #002f96,
+  A100 : #c1cfff,
+  A200 : #8ea8ff,
+  A400 : #5b81ff,
+  A700 : #416eff,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$pse-sport-competition-primary: mat.define-palette($pse-primary-palette);
+$pse-sport-competition-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$pse-sport-competition-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$pse-sport-competition-theme: mat.define-light-theme((color: (primary: $pse-sport-competition-primary,
+        accent: $pse-sport-competition-accent,
+        warn: $pse-sport-competition-warn,
+      )));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($pse-sport-competition-theme);
+
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+}
+
+:host {
+
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+a,
+a:visited,
+a:hover {
+  color: $pse-primary;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $pse-primary;
+}
+
+.toolbar {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: $pse-primary;
+  font-weight: 600;
+  align-items: center;
+}
+
+.toolbar img {
+  margin: 0 16px;
+}
+
+.content {
+  display: flex;
+  margin: 82px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-mdc-button-base.mdc-button.btn-menu {
+  border-radius: 0;
+  font-weight: 600;
+
+  &.active {
+    color: white;
+    background-color: $pse-orange;
+  }
+}
